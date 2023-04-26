@@ -23,12 +23,13 @@ in
         blesh airshipper (dwarf-fortress-packages.dwarf-fortress-full.override {
             enableFPS = true;
             enableIntro = true;
-        }) rofi-mpd rofi-bluetooth rofi-power-menu rofi-systemd
+        }) citra desmume dolphin-emu pcsx2 pcsxr ppsspp rpcs3
+        rofi-mpd rofi-bluetooth rofi-power-menu rofi-systemd
         #media
-        youtube-tui ani-cli 
+        youtube-tui ani-cli
         swaylock 
         xfce.thunar imv evince pavucontrol helvum
-        blueberry wlogout zathura gimp
+        blueberry wlogout zathura gimp fractal
         libreoffice 
         openscad cura discord
         xdg-utils mpvpaper betterdiscordctl 
@@ -39,7 +40,7 @@ in
         texlive.combined.scheme-medium texlab emacs-all-the-icons-fonts dejavu_fonts dejavu_fontsEnv xits-math nerdfonts
         ##ltex-ls pandoc
         #config format stuff
-        nil nixfmt taplo yaml-language-server marksman      
+        nil nixfmt taplo yaml-language-server marksman multimarkdown ispell
         #programming stuff
         git clang astyle
         maven openjdk19

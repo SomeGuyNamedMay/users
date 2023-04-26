@@ -36,19 +36,19 @@
       duskTime = "18:35-20:15";
   };
 
-  #wayland.windowManager.hyprland = {
-  #  enable = true;
-  #  systemdIntegration = true;
-  #  recommendedEnvironment = true;
-  #  xwayland = {
-  #    enable = true;
-  #    hidpi = false;
-  #  };
-  #  nvidiaPatches = false;
-  #  extraConfig = builtins.readFile ./hyprland.conf +
-  #    "bind=SUPER_SHIFT,Q,exec,${pkgs.wlogout}/bin/wlogout\n" +
-  #    "bind=SUPER,SPACE,exec,rofi -show\n";
-  #};
+  wayland.windowManager.hyprland = {
+    enable = true;
+    systemdIntegration = true;
+    recommendedEnvironment = true;
+    xwayland = {
+      enable = true;
+      hidpi = false;
+    };
+    nvidiaPatches = false;
+    extraConfig = builtins.readFile ./hyprland.conf +
+      "bind=SUPER_SHIFT,Q,exec,${pkgs.wlogout}/bin/wlogout\n" +
+      "bind=SUPER,SPACE,exec,rofi -show\n";
+  };
 
   services.swayidle = {
       enable = true;
@@ -115,6 +115,17 @@
           format = "{icon}";
           on-click = "activate";
           sort-by-number = true;
+        };
+        "mpris" = {
+            format = "{player_icon} {dynamic}";
+            format-paused = "{status_icon} <i>{dynamic}</i>";
+            player-icons = {
+                default = "";
+                mpv = "🎵";
+            };
+            status-icons = {
+                paused = "";
+            };
         };
       };
     };

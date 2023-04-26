@@ -114,7 +114,7 @@
 ;; ui enhancments
 (add-hook 'prog-mode-hook #'display-line-numbers-mode)
 (doom-modeline-mode 1)
-(selectrum-mode)
+;(selectrum-mode)
 
 (setq completion-styles '(orderless))
 
@@ -123,10 +123,10 @@
 
 ;; Optional performance optimization
 ;; by highlighting only the visible candidates.
-(setq orderless-skip-highlighting (lambda () selectrum-is-active))
-(setq selectrum-highlight-candidates-function #'orderless-highlight-matches)
-
-(setq selectrum-prescient-enable-filtering nil)
+;;(setq orderless-skip-highlighting (lambda () selectrum-is-active))
+;;(setq selectrum-highlight-candidates-function #'orderless-highlight-matches)
+;;
+;;(setq selectrum-prescient-enable-filtering nil)
 ;;(prescient-persist-mode +1)
 
 (dashboard-setup-startup-hook)
