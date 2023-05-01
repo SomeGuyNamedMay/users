@@ -17,7 +17,7 @@ in
     ];
 
     home.packages = with pkgs; [
-        bemenu
+        bemenu grim
         #games
         minecraft lutris gamescope xivlauncher
         steam onscripter-en gtkcord4 osu-lazer
@@ -26,6 +26,7 @@ in
             enableIntro = true;
         }) citra desmume dolphin-emu pcsx2 pcsxr ppsspp rpcs3
         rofi-mpd rofi-bluetooth rofi-power-menu rofi-systemd
+        github-desktop
         #media
         youtube-tui ani-cli
         swaylock 
