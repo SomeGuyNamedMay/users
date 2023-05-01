@@ -46,6 +46,7 @@
     };
     nvidiaPatches = false;
     extraConfig = builtins.readFile ./hyprland.conf +
+      "exec=waybar\n" +
       "bind=SUPER_SHIFT,Q,exec,${pkgs.wlogout}/bin/wlogout\n" +
       "bind=SUPER,SPACE,exec,rofi -show\n";
   };
@@ -64,7 +65,7 @@
       ];
       timeouts = [
           {
-              timeout = 60;
+              timeout = 600;
               command = "${pkgs.swaylock}/bin/swaylock -fF";
           }
       ];
@@ -79,7 +80,7 @@
         sed -i 's/zext_workspace_handle_v1_activate(workspace_handle_);/const std::string command = "hyprctl dispatch workspace " + name_;\n\tsystem(command.c_str());/g' src/modules/wlr/workspace_manager.cpp
       '';
     });
-    systemd.enable = true;
+    #systemd.enable = true;
     settings = {
       mainBar = {
         layer = "top";

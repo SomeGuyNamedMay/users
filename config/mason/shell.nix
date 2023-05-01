@@ -23,6 +23,10 @@
     enable = true;
   };
 
+  programs.tmux = {
+      enable = true;
+  };
+
   programs.helix = {
     enable = true;
     settings = {

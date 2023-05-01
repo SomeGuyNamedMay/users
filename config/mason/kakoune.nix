@@ -52,16 +52,20 @@ in
         plugins = with pkgs.kakounePlugins; [
             kak-lsp
             kak-fzf
+            case-kak
+            kak-ansi
             powerline-kak
             kakoune-idris
             kakoune-coq
             auto-pairs-kak
             openscad-kak
             kakoune-rainbow
+            rep
         ];
         extraConfig = ''
-        eval %sh{kak-lsp --kakoune -s $kak_session}
+        eval %sh{kak-lsp --config ${./kak-lsp.toml} --kakoune -s $kak_session}
         powerline-start
+        ansi-enable
         '';
     };
 }

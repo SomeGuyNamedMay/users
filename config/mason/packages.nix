@@ -17,6 +17,7 @@ in
     ];
 
     home.packages = with pkgs; [
+        bemenu
         #games
         minecraft lutris gamescope xivlauncher
         steam onscripter-en gtkcord4 osu-lazer
