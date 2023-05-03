@@ -25,16 +25,16 @@ in
             enableFPS = true;
             enableIntro = true;
         }) citra desmume dolphin-emu pcsx2 pcsxr ppsspp rpcs3
-        rofi-mpd rofi-bluetooth rofi-power-menu rofi-systemd
+        rofi-mpd rofi-bluetooth rofi-power-menu rofi-systemd wtype
         github-desktop
         #media
         youtube-tui ani-cli
         swaylock 
         xfce.thunar imv evince pavucontrol helvum
-        blueberry wlogout zathura gimp fractal
+        blueberry wlogout zathura gimp fractal neochat gotktrix
         libreoffice 
-        openscad cura discord
-        xdg-utils mpvpaper betterdiscordctl 
+        openscad cura 
+        xdg-utils mpvpaper 
         #shell stuff
         thefuck tldr tremc
         cachix aria2 jetbrains.idea-community

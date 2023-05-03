@@ -44,7 +44,7 @@
             }
             {
               stylix = {
-                  image = ./resources/wallpapers/raison-detre.jpg;
+                  image = ./resources/wallpapers/were-still-underground.jpg;
                   polarity = "dark";
                   fonts = {
                       serif = {

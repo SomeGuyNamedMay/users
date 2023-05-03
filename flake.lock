@@ -305,11 +305,11 @@
         "nixpkgs": "nixpkgs_4"
       },
       "locked": {
-        "lastModified": 1682913516,
-        "narHash": "sha256-/seSnDLhjnrzh7XJeeTk6+tMUPWn7tvxh1Tl79cRGes=",
+        "lastModified": 1683068210,
+        "narHash": "sha256-YB6vBcs9A6CmL9ctqr7lCvNfphZq/RbKTuhskyBExPA=",
         "owner": "SomeGuyNamedMy",
         "repo": "stylix",
-        "rev": "fef186a00f82640532cf03d20bceebcec026df9f",
+        "rev": "03d57ced332f864cc727e65511526313d8332195",
         "type": "github"
       },
       "original": {

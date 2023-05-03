@@ -153,7 +153,6 @@
 (rust-mode)
 (haskell-mode)
 (load-file (let ((coding-system-for-read 'utf-8)) (shell-command-to-string "agda-mode locate")))
-(agda2-mode)
 ;; lsp language hooks
 (add-hook 'rust-mode-hook 'lsp)
 (add-hook 'haskell-mode-hook 'lsp)
