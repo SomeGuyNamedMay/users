@@ -44,7 +44,7 @@
             }
             {
               stylix = {
-                  image = ./resources/wallpapers/were-still-underground.jpg;
+                  image = ./resources/wallpapers/static/were-still-underground.jpg;
                   polarity = "dark";
                   fonts = {
                       serif = {
