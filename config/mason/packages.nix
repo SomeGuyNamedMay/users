@@ -18,6 +18,7 @@ in
 
     home.packages = with pkgs; [
         bemenu grim
+        gnome.file-roller
         #games
         minecraft lutris gamescope xivlauncher
         steam onscripter-en gtkcord4 osu-lazer
@@ -28,8 +29,8 @@ in
         rofi-mpd rofi-bluetooth rofi-power-menu rofi-systemd wtype
         github-desktop
         #media
-        youtube-tui ani-cli
-        swaylock 
+        youtube-tui yt-dlp ani-cli
+        swaylock kid3 mpdevil
         xfce.thunar imv evince pavucontrol helvum
         blueberry wlogout zathura gimp fractal neochat gotktrix
         libreoffice 

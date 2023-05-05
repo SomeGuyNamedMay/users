@@ -46,6 +46,7 @@
     };
     nvidiaPatches = false;
     extraConfig = builtins.readFile ./hyprland.conf +
+      "exec-once=waybar\n" +
       "bind=SUPER_SHIFT,Q,exec,${pkgs.wlogout}/bin/wlogout\n" +
       "bind=SUPER,SPACE,exec,rofi -show\n";
   };

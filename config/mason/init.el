@@ -106,7 +106,7 @@
 (require 'meow)
 (meow-setup)
 (meow-global-mode 1)
-(global-aggressive-indent-mode 1)
+;;(global-aggressive-indent-mode 1)
 (add-hook 'prog-mode-hook #'smartparens-mode)
 
 ;; ui enhancments
