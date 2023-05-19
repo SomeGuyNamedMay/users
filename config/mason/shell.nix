@@ -21,6 +21,12 @@
 
   programs.nushell = {
     enable = true;
+    extraConfig = ''
+      source ${pkgs.nu_scripts}/share/nu_scripts/custom-completions/nix/nix-completions.nu
+      source ${pkgs.nu_scripts}/share/nu_scripts/custom-completions/git/git-completions.nu
+      source ${pkgs.nu_scripts}/share/nu_scripts/custom-completions/ani-cli/ani-cli-completions.nu
+      source ${pkgs.nu_scripts}/share/nu_scripts/custom-completions/cargo/cargo-completions.nu
+    '';
   };
 
   programs.tmux = {

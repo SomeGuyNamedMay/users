@@ -9,7 +9,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nur.url = "github:nix-community/NUR";
-    stylix.url = "github:SomeGuyNamedMy/stylix/hyprland-support";
+    stylix.url = "github:SomeGuyNamedMy/stylix";
     hyprland = {
         url = "github:hyprwm/Hyprland";
         inputs.nixpkgs.follows = "nixpkgs";
@@ -44,20 +44,20 @@
             }
             {
               stylix = {
-                  image = ./resources/wallpapers/static/were-still-underground.jpg;
+                  image = ./resources/wallpapers/static/log-horizon.jpg;
                   polarity = "dark";
                   fonts = {
                       serif = {
                           package = pkgs.dejavu_fonts;
-                          name = "DejaVu Serif";
+                          name = "FiraCode Nerd Font";
                       };
                       sansSerif = {
                           package = pkgs.dejavu_fonts;
-                          name = "DejaVu Sans";
+                          name = "FiraCode Nerd Font";
                       };
                       monospace = {
                           package = pkgs.dejavu_fonts;
-                          name = "DejaVu Sans Mono";
+                          name = "FiraCode Nerd Font Mono";
                       };
                       sizes = {
                           desktop = 12;

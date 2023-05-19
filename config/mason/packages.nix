@@ -29,33 +29,37 @@ in
         rofi-mpd rofi-bluetooth rofi-power-menu rofi-systemd wtype
         github-desktop
         #media
-        youtube-tui yt-dlp ani-cli
-        swaylock kid3 mpdevil
+        youtube-tui yt-dlp ani-cli headlines
+        swaylock kid3 mpdevil discord
         xfce.thunar imv evince pavucontrol helvum
-        blueberry wlogout zathura gimp fractal neochat gotktrix
+        blueberry wlogout zathura gimp fractal neochat 
         libreoffice 
         openscad cura 
         xdg-utils mpvpaper 
         #shell stuff
         thefuck tldr tremc
-        cachix aria2 jetbrains.idea-community
+        cachix aria2 chatgpt-cli
         # text stuff
-        texlive.combined.scheme-medium texlab emacs-all-the-icons-fonts dejavu_fonts dejavu_fontsEnv xits-math nerdfonts
+        texlive.combined.scheme-medium texlab emacs-all-the-icons-fonts xits-math nerdfonts
         ##ltex-ls pandoc
         #config format stuff
         nil nixfmt taplo yaml-language-server marksman multimarkdown ispell
         #programming stuff
-        git clang astyle
-        maven openjdk19
-        (python3.withPackages pythonPackages) coq agda idris2
-    ] ++ (with rubyPackages_3_1; [
-  ruby rufo
-  solargraph
-]) ++ (with nodePackages; [
-  typescript-language-server
-  vscode-langservers-extracted  
-]) ++ (with luajitPackages; [
-  lua stylua
-  lua-lsp
-]);
+        git 
+        # compiled languages
+        cargo rustc rust-analyzer rustfmt 
+        clang clang-tools lldb astyle
+        ghc cabal-install stack haskell-language-server
+        zig zls ldc dub
+        # half compiled monstrocities
+        openjdk19 maven
+        dotnet-sdk omnisharp-roslyn netcoredbg
+        # scripting languages
+        ruby rufo solargraph
+        nodePackages.typescript-language-server nodePackages.vscode-langservers-extracted
+        lua stylua lua-language-server
+        (python3.withPackages pythonPackages)
+        # proof assistent stuff
+        coq agda idris2
+    ];
 }

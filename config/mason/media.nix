@@ -1,9 +1,9 @@
 { config, pkgs, lib, ... }:
 
 {
-  programs.discocss = {
-      enable = true;
-  };
+  #programs.discocss = {
+  #    enable = true;
+  #};
   programs.mpv = {
       enable = true;
       config = {

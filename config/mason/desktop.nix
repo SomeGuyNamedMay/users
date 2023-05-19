@@ -51,26 +51,26 @@
       "bind=SUPER,SPACE,exec,rofi -show\n";
   };
 
-  services.swayidle = {
-      enable = true;
-      events = [
-          {
-              event = "before-sleep";
-              command = "${pkgs.swaylock}/bin/swaylock";
-          }
-          {
-              event = "lock";
-              command = "lock";
-          }
-      ];
-      timeouts = [
-          {
-              timeout = 600;
-              command = "${pkgs.swaylock}/bin/swaylock -fF";
-          }
-      ];
-      systemdTarget = "graphical-session.target";
-  };
+  #services.swayidle = {
+  #    enable = true;
+  #    events = [
+  #        {
+  #            event = "before-sleep";
+  #            command = "${pkgs.swaylock}/bin/swaylock";
+  #        }
+  #        {
+  #            event = "lock";
+  #            command = "lock";
+  #        }
+  #    ];
+  #    timeouts = [
+  #        {
+  #            timeout = 600;
+  #            command = "${pkgs.swaylock}/bin/swaylock -fF";
+  #        }
+  #    ];
+  #    systemdTarget = "graphical-session.target";
+  #};
 
   programs.waybar = {
     enable = true;
@@ -80,7 +80,7 @@
         sed -i 's/zext_workspace_handle_v1_activate(workspace_handle_);/const std::string command = "hyprctl dispatch workspace " + name_;\n\tsystem(command.c_str());/g' src/modules/wlr/workspace_manager.cpp
       '';
     });
-    systemd.enable = true;
+    #systemd.enable = true;
     settings = {
       mainBar = {
         layer = "top";
@@ -162,7 +162,16 @@
 
 
   programs.foot.enable = true;
-  programs.kitty.enable = true;
+  programs.wezterm = {
+      enable = true;
+      extraConfig = ''
+          config.tab_bar_at_bottom = true
+          config.show_new_tab_button_in_tab_bar = false
+          config.hide_tab_bar_if_only_one_tab = true
+
+          return config 
+      '';
+  };
 
   services.mako = { enable = true; };
   services.udiskie.enable = true;
