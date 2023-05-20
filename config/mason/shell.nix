@@ -2,6 +2,7 @@
 
 {
   home.sessionVariables = {
+    MANPAGER = "sh -c 'col -bx | bat -l man -p'";
     TERMINAL = "wezterm";
     GTK_CSD = "0";
   };
@@ -27,6 +28,14 @@
       source ${pkgs.nu_scripts}/share/nu_scripts/custom-completions/ani-cli/ani-cli-completions.nu
       source ${pkgs.nu_scripts}/share/nu_scripts/custom-completions/cargo/cargo-completions.nu
     '';
+  };
+
+  programs.bat = {
+      enable = true;
+      extraPackages = with pkgs.bat-extras; [
+          batdiff
+          batman
+      ];
   };
 
   programs.tmux = {

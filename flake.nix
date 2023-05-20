@@ -42,54 +42,12 @@
                     (super: self: {emacsPackages.idris2-mode = idris.packages.x86_64-linux.idris2-mode;})
                 ];
             }
-            {
-              stylix = {
-                  image = ./resources/wallpapers/static/log-horizon.jpg;
-                  polarity = "dark";
-                  fonts = {
-                      serif = {
-                          package = pkgs.dejavu_fonts;
-                          name = "FiraCode Nerd Font";
-                      };
-                      sansSerif = {
-                          package = pkgs.dejavu_fonts;
-                          name = "FiraCode Nerd Font";
-                      };
-                      monospace = {
-                          package = pkgs.dejavu_fonts;
-                          name = "FiraCode Nerd Font Mono";
-                      };
-                      sizes = {
-                          desktop = 12;
-                          applications = 15;
-                          terminal = 15;
-                          popups = 12;
-                      };
-                  };
-                  opacity = {
-                      terminal = 0.90;
-                      applications = 0.90;
-                      popups = 0.50;
-                      desktop = 0.90;
-                  };
-                  targets = {
-                      waybar.enableLeftBackColors = true;
-                      waybar.enableRightBackColors = true;
-                  };
-              };
-            }
-            ./config/mason/desktop.nix
-            ./config/mason/kakoune.nix
-            ./config/mason/media.nix
-            ./config/mason/packages.nix
-            ./config/mason/programming-env.nix
-            ./config/mason/shell.nix
-            ./config/mason/web.nix
+            (import ./config/mason)
             #./config/general
         ];
-
         # Optionally use extraSpecialArgs
         # to pass through arguments to home.nix
       };
+      extraSpecialArgs = { inherit stylix; };
     };
 }

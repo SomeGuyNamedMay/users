@@ -17,8 +17,7 @@ in
     ];
 
     home.packages = with pkgs; [
-        bemenu grim
-        gnome.file-roller
+        bemenu grim 
         #games
         minecraft lutris gamescope xivlauncher
         steam onscripter-en gtkcord4 osu-lazer
@@ -27,18 +26,17 @@ in
             enableIntro = true;
         }) citra desmume dolphin-emu pcsx2 pcsxr ppsspp rpcs3
         rofi-mpd rofi-bluetooth rofi-power-menu rofi-systemd wtype
-        github-desktop
         #media
         youtube-tui yt-dlp ani-cli headlines
         swaylock kid3 mpdevil discord
-        xfce.thunar imv evince pavucontrol helvum
-        blueberry wlogout zathura gimp fractal neochat 
-        libreoffice 
+        xfce.thunar imv evince pavucontrol 
+        blueberry zathura gimp neochat libreoffice
         openscad cura 
         xdg-utils mpvpaper 
         #shell stuff
         thefuck tldr tremc
         cachix aria2 chatgpt-cli
+
         # text stuff
         texlive.combined.scheme-medium texlab emacs-all-the-icons-fonts xits-math nerdfonts
         ##ltex-ls pandoc
@@ -61,5 +59,9 @@ in
         (python3.withPackages pythonPackages)
         # proof assistent stuff
         coq agda idris2
+        libsForQt5.kpeoplevcard
+        libsForQt5.kcontacts
+        libsForQt5.kpeople
+        chroma moar
     ];
 }

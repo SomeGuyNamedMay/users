@@ -132,9 +132,6 @@
     };
   };
 
-
-  services.network-manager-applet.enable = true;
-
   programs.rofi = {
     enable = true;
     package = pkgs.rofi-wayland;
@@ -164,13 +161,13 @@
   programs.foot.enable = true;
   programs.wezterm = {
       enable = true;
-      extraConfig = ''
-          config.tab_bar_at_bottom = true
-          config.show_new_tab_button_in_tab_bar = false
-          config.hide_tab_bar_if_only_one_tab = true
+     # extraConfig = ''
+     #     config.tab_bar_at_bottom = true
+     #     config.show_new_tab_button_in_tab_bar = false
+     #     config.hide_tab_bar_if_only_one_tab = true
 
-          return config 
-      '';
+     #     return config 
+     # '';
   };
 
   services.mako = { enable = true; };
