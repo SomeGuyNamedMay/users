@@ -14,11 +14,15 @@
         url = "github:hyprwm/Hyprland";
         inputs.nixpkgs.follows = "nixpkgs";
     };
+    ironbar = {
+        url = "github:JakeStanger/ironbar";
+        inputs.nixpkgs.follows = "nixpkgs";
+    };
     emacs-overlay.url = "github:nix-community/emacs-overlay";
     idris.url = "github:idris-lang/Idris2";
   };
 
-  outputs = { nixpkgs, home-manager, nur, stylix, hyprland, emacs-overlay, idris, ... }:
+  outputs = { nixpkgs, home-manager, nur, stylix, hyprland, ironbar, emacs-overlay, idris, ... }:
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
@@ -31,6 +35,7 @@
         modules = [
             stylix.homeManagerModules.stylix
             hyprland.homeManagerModules.default
+            ironbar.homeManagerModules.default
             nur.hmModules.nur
             {
                 home.username = "mason";

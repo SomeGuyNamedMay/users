@@ -46,7 +46,6 @@
     };
     nvidiaPatches = false;
     extraConfig = builtins.readFile ./hyprland.conf +
-      "exec-once=waybar\n" +
       "bind=SUPER_SHIFT,Q,exec,${pkgs.wlogout}/bin/wlogout\n" +
       "bind=SUPER,SPACE,exec,rofi -show\n";
   };
@@ -72,64 +71,53 @@
   #    systemdTarget = "graphical-session.target";
   #};
 
-  programs.waybar = {
-    enable = true;
-    package = pkgs.waybar.overrideAttrs (oldAttrs: {
-      mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
-      postPatch = ''
-        sed -i 's/zext_workspace_handle_v1_activate(workspace_handle_);/const std::string command = "hyprctl dispatch workspace " + name_;\n\tsystem(command.c_str());/g' src/modules/wlr/workspace_manager.cpp
-      '';
-    });
-    #systemd.enable = true;
-    settings = {
-      mainBar = {
-        layer = "top";
-        position = "top";
-        height = 20;
-        modules-left = [ "user" "wlr/workspaces" "mpris" "backlight" ];
-        modules-center = [ "hyprland/window"];
-        modules-right = [ "tray" "wireplumber" "network" "upower" "clock" ];
-        "user" = {
-          format = "{user}";
-          interval = 60;
-          height = 30;
-          width = 30;
-          icon = true;
-        };
-        "wireplumber" = {
-          format = "{volume}% {icon}";
-          format-muted = " ";
-          on-click = "volumectl toggle-mute";
-          format-icons = [ " " " " " " ];
-        };
-        "upower" = {
-          icon-size = 20;
-          hide-if-empty = false;
-        };
-        "network" = {
-          format = "{ifname}";
-          format-wifi = "{essid} ({signalStrength}%)  ";
-          format-ethernet = "{ipaddr}/{cidr}  ";
-          format-disconnected = "";
-        };
-        "wlr/workspaces" = {
-          format = "{icon}";
-          on-click = "activate";
-          sort-by-number = true;
-        };
-        "mpris" = {
-            format = "{player_icon} {dynamic}";
-            format-paused = "{status_icon} <i>{dynamic}</i>";
-            player-icons = {
-                default = "";
-                mpv = "🎵";
-            };
-            status-icons = {
-                paused = "";
-            };
-        };
+  programs.ironbar = {
+      enable = true;
+      systemd = true;
+      config = {
+          position = "top";
+          icon_theme = "Zafiro-icons-Dark";
+          height = 20;
+          anchor_to_edges = true;
+          margin.left = 5;
+          margin.right = 5;
+          start = [
+              {
+                  type = "focused";
+                  show_title = false;
+                  icon_size = 20;
+              }
+              {
+                  type = "workspaces";
+                  icon_size = 20;
+              }
+          ];
+          center = [
+          ];
+          end = [
+              {
+                  type = "tray";
+              }
+              {
+                  type = "music";
+                  truncate.mode = "start";
+                  truncate.length = 10;
+                  truncate.max_length = 10;
+              }
+              {
+                  type = "upower";
+              }
+              {
+                  type = "clock";
+                  format = "%r";
+              }
+          ];
       };
-    };
+      style = ''
+        * {
+            font-size = 12px
+        }
+      '';
   };
 
   programs.rofi = {
@@ -170,7 +158,7 @@
      # '';
   };
 
-  services.mako = { enable = true; };
+ # services.mako = { enable = true; };
   services.udiskie.enable = true;
   services.poweralertd.enable = true;
 
@@ -188,16 +176,16 @@
   xdg.mimeApps = {
     enable = true;
     associations.added = {
-        "x-scheme-handler/http" = "qutebrowser.desktop";
-        "x-scheme-handler/https" = "qutebrowser.desktop";
-        "x-scheme-handler/chrome" = "qutebrowser.desktop";
-        "text/html" = "qutebrowser.desktop";
-        "application/x-extension-htm" = "qutebrowser.desktop";
-        "application/x-extension-html" = "qutebrowser.desktop";
-        "application/x-extension-shtml" = "qutebrowser.desktop";
-        "application/xhtml+xml" = "qutebrowser.desktop";
-        "application/x-extension-xhtml" = "qutebrowser.desktop";
-        "application/x-extension-xht" = "qutebrowser.desktop";
+        "x-scheme-handler/http" = "firefox.desktop";
+        "x-scheme-handler/https" = "firefox.desktop";
+        "x-scheme-handler/chrome" = "firefox.desktop";
+        "text/html" = "firefox.desktop";
+        "application/x-extension-htm" = "firefox.desktop";
+        "application/x-extension-html" = "firefox.desktop";
+        "application/x-extension-shtml" = "firefox.desktop";
+        "application/xhtml+xml" = "firefox.desktop";
+        "application/x-extension-xhtml" = "firefox.desktop";
+        "application/x-extension-xht" = "firefox.desktop";
     };
     defaultApplications = {
       "image/png" = [ "imv.desktop" ];
@@ -206,16 +194,16 @@
       "application/pdf" = [ "org.pwmt.zathura-pdf-mupdf.desktop" ];
       "text/plain" = [ "emacs.desktop" ];
       "inode/directory" = [ "thunar.desktop" ];
-      "x-scheme-handler/http" = [ "qutebrowser.desktop" ];
-      "x-scheme-handler/https" = [ "qutebrowser.desktop" ];
-      "x-scheme-handler/chrome" = [ "qutebrowser.desktop" ];
-      "text/html" = [ "qutebrowser.desktop" ];
-      "application/x-extension-htm" = [ "qutebrowser.desktop" ];
-      "application/x-extension-html" = ["qutebrowser.desktop"];
-      "application/x-extension-shtml" = ["qutebrowser.desktop"];
-      "application/xhtml+xml" = ["qutebrowser.desktop"];
-      "application/x-extension-xhtml" = ["qutebrowser.desktop"];
-      "application/x-extension-xht" = ["qutebrowser.desktop"];
+      "x-scheme-handler/http" = [ "firefox.desktop" ];
+      "x-scheme-handler/https" = [ "firefox.desktop" ];
+      "x-scheme-handler/chrome" = [ "firefox.desktop" ];
+      "text/html" = [ "firefox.desktop" ];
+      "application/x-extension-htm" = [ "firefox.desktop" ];
+      "application/x-extension-html" = ["firefox.desktop"];
+      "application/x-extension-shtml" = ["firefox.desktop"];
+      "application/xhtml+xml" = ["firefox.desktop"];
+      "application/x-extension-xhtml" = ["firefox.desktop"];
+      "application/x-extension-xht" = ["firefox.desktop"];
     };
   };
 

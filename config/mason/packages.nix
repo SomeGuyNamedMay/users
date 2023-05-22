@@ -63,5 +63,6 @@ in
         libsForQt5.kcontacts
         libsForQt5.kpeople
         chroma moar
+        swaynotificationcenter
     ];
 }

@@ -6,16 +6,16 @@
         polarity = "dark";
         fonts = {
             serif = {
-                package = pkgs.dejavu_fonts;
-                name = "DejaVu Serif";
+                package = pkgs.nerdfonts;
+                name = "FiraCode Nerd Font";
             };
             sansSerif = {
-                package = pkgs.dejavu_fonts;
-                name = "DejaVu Sans";
+                package = pkgs.nerdfonts;
+                name = "FiraCode Nerd Font";
             };
             monospace = {
-                package = pkgs.dejavu_fonts;
-                name = "DejaVu Sans Mono";
+                package = pkgs.nerdfonts;
+                name = "FiraCode Nerd Font";
             };
             sizes = {
                 desktop = 12;
