@@ -28,7 +28,7 @@ in
         rofi-mpd rofi-bluetooth rofi-power-menu rofi-systemd wtype
         #media
         youtube-tui yt-dlp ani-cli headlines
-        swaylock kid3 mpdevil discord
+        swaylock kid3 mpdevil soundux discord streamlink-twitch-gui-bin
         xfce.thunar imv evince pavucontrol 
         blueberry zathura gimp neochat libreoffice
         openscad cura 

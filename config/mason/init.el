@@ -157,7 +157,7 @@
 (add-hook 'rust-mode-hook 'lsp)
 (add-hook 'haskell-mode-hook 'lsp)
 (add-hook 'java-mode-hook 'lsp)
-(add-hook 'coq-mode-hook #'company-coq-mode)
+;;(add-hook 'coq-mode-hook #'company-coq-mode)
 
 ;; dap configuration
 (dap-mode)
@@ -167,38 +167,5 @@
 (dap-ui-controls-mode)
 
 ;; prittify text
-(setq company-coq-features/prettify-symbols-in-terminals t)
+;;(setq company-coq-features/prettify-symbols-in-terminals t)
 (set-fontset-font t 'unicode (font-spec :name "XITS Math") nil 'prepend)
-(add-hook 'coq-mode-hook
-	  (lambda ()
-	    (setq-local prettify-symbols-alist
-			'(("~" . "¬")))))
-
-(add-hook 'haskell-mode-hook
-	  (lambda ()
-	    (setq-local prettify-symbols-alist
-			'(("Not" . "¬")
-                          ("\" . "λ")
-                          ("/=" . "≠")
-                          ("===" . "≡")
-                          (":=" . "≔")
-			  ("->" . "→")
-                          ("<-" . "←")
-                          ("<->" . "↔")
-                          ("<=>" . "⇔")
-                          ("=>" . "⇒")
-                          ("/\" . "∧")
-                          ("\/" . "∨")
-                          ("++" . "⧺")
-                          ("+++" . "⧻")
-                          (">>" . "»")
-                          ("(+)" . "⨁")
-                          ("forall" . "∀")
-                          ("exists" . "∃")
-                          ("True" . "⊤")
-                          ("False" . "⊥")
-                          ("Bool" . "𝔹")
-                          ("Int" . "ℤ")
-                          ("Nat" . "ℕ")
-                          ("return" . "↑")
-                          ("where" . "∴")))))

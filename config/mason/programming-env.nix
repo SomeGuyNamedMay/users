@@ -71,6 +71,7 @@
         lsp-origami
         proof-general
         company-coq
+        agda2-mode
         #project management
         projectile
       ];
