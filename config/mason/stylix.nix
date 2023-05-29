@@ -2,7 +2,10 @@
 
 {
   stylix = {
-      image = ../../resources/wallpapers/static/log-horizon.jpg;
+      image = pkgs.fetchurl {
+          url = "https://dl.dropboxusercontent.com/s/26outp2w90fw4bl/ffxiv-wallpaper.jpg?dl=0";
+          sha256 = "I8vEvC2R68ToXDLD/ZYK93NXpxeWw84btX7Spfajuec=";
+      };
       polarity = "dark";
       fonts = {
           serif = {

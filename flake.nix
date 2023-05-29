@@ -48,7 +48,6 @@
                 ];
             }
             (import ./config/mason)
-            #./config/general
         ];
         # Optionally use extraSpecialArgs
         # to pass through arguments to home.nix

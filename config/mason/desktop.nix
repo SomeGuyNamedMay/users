@@ -81,6 +81,7 @@
           anchor_to_edges = true;
           margin.left = 5;
           margin.right = 5;
+          margin.top = 5;
           start = [
               {
                   type = "focused";
@@ -106,6 +107,7 @@
               }
               {
                   type = "upower";
+                  format = "";
               }
               {
                   type = "clock";
@@ -114,9 +116,9 @@
           ];
       };
       style = ''
-        * {
-            font-size = 12px
-        }
+      * {
+          border-radius: 26px;
+      }
       '';
   };
 
@@ -147,18 +149,6 @@
 
 
   programs.foot.enable = true;
-  programs.wezterm = {
-      enable = true;
-      extraConfig = ''
-          local config = {}
-
-          config.tab_bar_at_bottom = true
-          config.show_new_tab_button_in_tab_bar = false
-          config.hide_tab_bar_if_only_one_tab = true
-
-          return config 
-      '';
-  };
 
  # services.mako = { enable = true; };
   services.udiskie.enable = true;
