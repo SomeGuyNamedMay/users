@@ -2,23 +2,31 @@
 
 {
   stylix = {
-      image = pkgs.fetchurl {
-          url = "https://dl.dropboxusercontent.com/s/26outp2w90fw4bl/ffxiv-wallpaper.jpg?dl=0";
-          sha256 = "I8vEvC2R68ToXDLD/ZYK93NXpxeWw84btX7Spfajuec=";
+  #    image = pkgs.fetchurl {
+  #        url = "https://dl.dropboxusercontent.com/s/26outp2w90fw4bl/ffxiv-wallpaper.jpg?dl=0";
+  #        sha256 = "I8vEvC2R68ToXDLD/ZYK93NXpxeWw84btX7Spfajuec=";
+  #    };
+      wallpaper = config.lib.stylix.mkAnimation {
+          #image = pkgs.fetchurl {
+          #    url = "https://dl.dropboxusercontent.com/s/26outp2w90fw4bl/ffxiv-wallpaper.jpg?dl=0";
+          #    sha256 = "I8vEvC2R68ToXDLD/ZYK93NXpxeWw84btX7Spfajuec=";
+          #};
+          animation = ../../resources/gif/lofi-cafe.gif;
+          polarity = "dark";
       };
-      polarity = "dark";
+    polarity = "dark";
       fonts = {
           serif = {
-              package = pkgs.dejavu_fonts;
+              package = pkgs.nerdfonts;
               name = "FiraCode Nerd Font";
           };
           sansSerif = {
-              package = pkgs.dejavu_fonts;
+              package = pkgs.nerdfonts;
               name = "FiraCode Nerd Font";
           };
           monospace = {
-              package = pkgs.dejavu_fonts;
-              name = "FiraCode Nerd Font Mono";
+              package = pkgs.nerdfonts;
+              name = "FiraCode Nerd Font";
           };
           sizes = {
               desktop = 12;

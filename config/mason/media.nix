@@ -1,9 +1,15 @@
 { config, pkgs, lib, ... }:
 
 {
-  #programs.discocss = {
-  #    enable = true;
-  #};
+  programs.yt-dlp = {
+      enable = true;
+      settings = {
+          embed-thumbnail = true;
+          embed-subs = true;
+          sub-langs = "all";
+      };
+  };
+
   programs.mpv = {
       enable = true;
       config = {

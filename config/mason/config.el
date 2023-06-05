@@ -1,5 +1,11 @@
-(global-prettify-symbols-mode 1)
-;; set backup files
+;; remove clutter
+(menu-bar-mode -1)
+(tool-bar-mode -1)
+(scroll-bar-mode -1)
+(rainbow-mode)
+(savehist-mode)
+
+;; file and backup history
 (setq
  backup-by-copying t
  backup-directory-alist
@@ -106,26 +112,19 @@
 (require 'meow)
 (meow-setup)
 (meow-global-mode 1)
-;;(global-aggressive-indent-mode 1)
 (add-hook 'prog-mode-hook #'smartparens-mode)
 
 ;; ui enhancments
 (add-hook 'prog-mode-hook #'display-line-numbers-mode)
 (doom-modeline-mode 1)
 (selectrum-mode)
-
 (setq completion-styles '(orderless))
-
-;; Persist history over Emacs restarts
-(savehist-mode)
-
 ;; Optional performance optimization
 ;; by highlighting only the visible candidates.
-
 (setq orderless-skip-highlighting (lambda () selectrum-is-active))
 (setq selectrum-highlight-candidates-function #'orderless-highlight-matches)
 
-
+;; dashboard settings
 (dashboard-setup-startup-hook)
 (setq dashboard-set-heading-icons t)
 (setq dashboard-set-file-icons t)
@@ -136,6 +135,7 @@
 
 (dirvish-override-dired-mode)
 (global-flycheck-mode)
+;;tabs
 (centaur-tabs-mode t)
 (setq centaur-tabs-style "bar")
 (setq centaur-tabs-set-icons t)
@@ -157,7 +157,7 @@
 (add-hook 'rust-mode-hook 'lsp)
 (add-hook 'haskell-mode-hook 'lsp)
 (add-hook 'java-mode-hook 'lsp)
-;;(add-hook 'coq-mode-hook #'company-coq-mode)
+(add-hook 'coq-mode-hook #'company-coq-mode)
 
 ;; dap configuration
 (dap-mode)
@@ -167,5 +167,5 @@
 (dap-ui-controls-mode)
 
 ;; prittify text
-;;(setq company-coq-features/prettify-symbols-in-terminals t)
+(setq company-coq-features/prettify-symbols-in-terminals t)
 (set-fontset-font t 'unicode (font-spec :name "XITS Math") nil 'prepend)

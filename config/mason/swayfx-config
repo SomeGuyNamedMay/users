@@ -1,0 +1,5 @@
+blur enable
+blur_passes 1
+blur_radius 10
+shadows enable
+corner_radius 2

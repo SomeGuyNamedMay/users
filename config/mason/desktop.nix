@@ -1,7 +1,6 @@
 { pkgs, lib, config, ... }: # my-wallpapers, ... }:
 
 {
-
   home.pointerCursor = {
     name = "phinger-cursors-light";
     package = pkgs.phinger-cursors;
@@ -36,18 +35,60 @@
       duskTime = "18:35-20:15";
   };
 
-  wayland.windowManager.hyprland = {
-    enable = true;
-    systemdIntegration = true;
-    recommendedEnvironment = true;
-    xwayland = {
+  wayland.windowManager.sway = {
       enable = true;
-      hidpi = false;
+      package = pkgs.swayfx;
+      config = {
+          modifier = "Mod4";
+          menu = "${pkgs.rofi-wayland}/bin/rofi -show";
+          gaps = {
+              inner = 10;
+              outer = 10;
+          };
+          bars = [];
+      };
+      extraConfig = ''
+      include ${./swayfx-config}
+      '';
+    wrapperFeatures.gtk = true;
+    swaynag = {        
+        enable = true;
     };
-    nvidiaPatches = false;
-    extraConfig = builtins.readFile ./hyprland.conf +
-      "bind=SUPER_SHIFT,Q,exec,${pkgs.wlogout}/bin/wlogout\n" +
-      "bind=SUPER,SPACE,exec,rofi -show\n";
+  };
+
+  programs.waybar = {
+      enable = true;
+      systemd.enable = true;
+      settings = {
+          mainBar = {
+              layer = "top";
+              position = "top";
+              height = 30;
+              modules-left = [
+                  "user"
+                  "sway/workspaces"
+              ];
+              modules-center = [
+                  "sway/window"
+              ];
+              modules-right = [
+                  "upower"
+                  "clock"
+              ];
+              "sway/workspaces" = {
+                  persistent_workspaces = {
+                      "1" = [];
+                      "2" = [];
+                      "3" = [];
+                      "4" = [];
+                      "5" = [];
+                  };
+              };
+              "sway/window" = {
+                  icon = true;
+              };
+          };
+      };
   };
 
   #services.swayidle = {
@@ -71,56 +112,6 @@
   #    systemdTarget = "graphical-session.target";
   #};
 
-  programs.ironbar = {
-      enable = true;
-      systemd = true;
-      config = {
-          position = "top";
-          icon_theme = "Zafiro-icons-Dark";
-          height = 20;
-          anchor_to_edges = true;
-          margin.left = 5;
-          margin.right = 5;
-          margin.top = 5;
-          start = [
-              {
-                  type = "focused";
-                  show_title = false;
-                  icon_size = 20;
-              }
-              {
-                  type = "workspaces";
-                  icon_size = 20;
-              }
-          ];
-          center = [
-          ];
-          end = [
-              {
-                  type = "tray";
-              }
-              {
-                  type = "music";
-                  truncate.mode = "start";
-                  truncate.length = 10;
-                  truncate.max_length = 10;
-              }
-              {
-                  type = "upower";
-                  format = "";
-              }
-              {
-                  type = "clock";
-                  format = "%r";
-              }
-          ];
-      };
-      style = ''
-      * {
-          border-radius: 26px;
-      }
-      '';
-  };
 
   programs.rofi = {
     enable = true;
@@ -150,7 +141,7 @@
 
   programs.foot.enable = true;
 
- # services.mako = { enable = true; };
+  services.mako = { enable = true; };
   services.udiskie.enable = true;
   services.poweralertd.enable = true;
 
@@ -168,34 +159,34 @@
   xdg.mimeApps = {
     enable = true;
     associations.added = {
-        "x-scheme-handler/http" = "firefox.desktop";
-        "x-scheme-handler/https" = "firefox.desktop";
-        "x-scheme-handler/chrome" = "firefox.desktop";
-        "text/html" = "firefox.desktop";
-        "application/x-extension-htm" = "firefox.desktop";
-        "application/x-extension-html" = "firefox.desktop";
-        "application/x-extension-shtml" = "firefox.desktop";
-        "application/xhtml+xml" = "firefox.desktop";
-        "application/x-extension-xhtml" = "firefox.desktop";
-        "application/x-extension-xht" = "firefox.desktop";
+        "x-scheme-handler/http" = "qutebrowser.desktop";
+        "x-scheme-handler/https" = "qutebrowser.desktop";
+        "x-scheme-handler/chrome" = "qutebrowser.desktop";
+        "text/html" = "qutebrowser.desktop";
+        "application/x-extension-htm" = "qutebrowser.desktop";
+        "application/x-extension-html" = "qutebrowser.desktop";
+        "application/x-extension-shtml" = "qutebrowser.desktop";
+        "application/xhtml+xml" = "qutebrowser.desktop";
+        "application/x-extension-xhtml" = "qutebrowser.desktop";
+        "application/x-extension-xht" = "qutebrowser.desktop";
     };
     defaultApplications = {
       "image/png" = [ "imv.desktop" ];
       "image/jpeg" = [ "imv.desktop" ];
       "image/gif" = [ "imv.desktop" ];
       "application/pdf" = [ "org.pwmt.zathura-pdf-mupdf.desktop" ];
-      "text/plain" = [ "emacs.desktop" ];
+      "text/plain" = [ "Helix.desktop" ];
       "inode/directory" = [ "thunar.desktop" ];
-      "x-scheme-handler/http" = [ "firefox.desktop" ];
-      "x-scheme-handler/https" = [ "firefox.desktop" ];
-      "x-scheme-handler/chrome" = [ "firefox.desktop" ];
-      "text/html" = [ "firefox.desktop" ];
-      "application/x-extension-htm" = [ "firefox.desktop" ];
-      "application/x-extension-html" = ["firefox.desktop"];
-      "application/x-extension-shtml" = ["firefox.desktop"];
-      "application/xhtml+xml" = ["firefox.desktop"];
-      "application/x-extension-xhtml" = ["firefox.desktop"];
-      "application/x-extension-xht" = ["firefox.desktop"];
+      "x-scheme-handler/http" = [ "qutebrowser.desktop" ];
+      "x-scheme-handler/https" = [ "qutebrowser.desktop" ];
+      "x-scheme-handler/chrome" = [ "qutebrowser.desktop" ];
+      "text/html" = [ "qutebrowser.desktop" ];
+      "application/x-extension-htm" = [ "qutebrowser.desktop" ];
+      "application/x-extension-html" = ["qutebrowser.desktop"];
+      "application/x-extension-shtml" = ["qutebrowser.desktop"];
+      "application/xhtml+xml" = ["qutebrowser.desktop"];
+      "application/x-extension-xhtml" = ["qutebrowser.desktop"];
+      "application/x-extension-xht" = ["qutebrowser.desktop"];
     };
   };
 

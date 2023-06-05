@@ -17,7 +17,7 @@ in
     ];
 
     home.packages = with pkgs; [
-        bemenu grim 
+        bemenu grim ffmpeg
         #games
         minecraft lutris gamescope xivlauncher
         steam onscripter-en gtkcord4 osu-lazer
@@ -38,7 +38,8 @@ in
         cachix aria2 chatgpt-cli
 
         # text stuff
-        texlive.combined.scheme-medium texlab emacs-all-the-icons-fonts xits-math nerdfonts
+        texlive.combined.scheme-medium texlab
+        emacs-all-the-icons-fonts xits-math nerdfonts
         ##ltex-ls pandoc
         #config format stuff
         nil nixfmt taplo yaml-language-server marksman multimarkdown ispell
@@ -63,6 +64,5 @@ in
         libsForQt5.kcontacts
         libsForQt5.kpeople
         chroma moar
-        swaynotificationcenter
     ];
 }
