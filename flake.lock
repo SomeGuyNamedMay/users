@@ -142,8 +142,8 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1685752809,
-        "narHash": "sha256-YZBP/A7hjs+gbRJcwEC8QD9ac/x6/EY2T0pH8Cl0J58=",
+        "lastModified": 1686012109,
+        "narHash": "sha256-j3SPwK1y0YcPdfGYA9ff6we6xJpylFaLCZLXplCmvHc=",
         "type": "git",
         "url": "file:///home/mason/Projects/stylix"
       },

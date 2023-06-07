@@ -18,6 +18,7 @@ in
 
     home.packages = with pkgs; [
         bemenu grim ffmpeg
+        onagre
         #games
         minecraft lutris gamescope xivlauncher
         steam onscripter-en gtkcord4 osu-lazer
