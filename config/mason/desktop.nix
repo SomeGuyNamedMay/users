@@ -1,6 +1,8 @@
 { pkgs, lib, config, ... }: # my-wallpapers, ... }:
 
 {
+  xsession.enable = true;
+  xsession.windowManager.i3.enable = true;
   home.pointerCursor = {
     name = "phinger-cursors-light";
     package = pkgs.phinger-cursors;
@@ -20,7 +22,9 @@
 
   qt = {
     enable = true;
-    platformTheme = "gtk";
+    platformTheme = "gnome";
+    style.package = pkgs.adwaita-qt;
+    style.name = "adwaita";
   };
 
   dconf.settings = {
@@ -48,22 +52,24 @@
           bars = [];
       };
       extraConfig = ''
-      include ${./swayfx-config}
+        include ${./swayfx-config}
       '';
     wrapperFeatures.gtk = true;
     extraSessionCommands = ''
-    export SDL_VIDEODRIVER=wayland
-    # needs qt5.qtwayland in systemPackages
-    export QT_QPA_PLATFORM=wayland
-    export QT_WAYLAND_DISABLE_WINDOWDECORATION="1"
-    # Fix for some Java AWT applications (e.g. Android Studio),
-    # use this if they aren't displayed properly:
-    export _JAVA_AWT_WM_NONREPARENTING=1
-    export XDG_CURRENT_DESKTOP=sway
+      export SDL_VIDEODRIVER=wayland
+      # needs qt5.qtwayland in systemPackages
+      export QT_QPA_PLATFORM=wayland
+      export QT_WAYLAND_DISABLE_WINDOWDECORATION="1"
+      # Fix for some Java AWT applications (e.g. Android Studio),
+      # use this if they aren't displayed properly:
+      export _JAVA_AWT_WM_NONREPARENTING=1
+      export XDG_CURRENT_DESKTOP=Sway
     '';
-    swaynag = {        
-        enable = true;
-    };
+  };
+
+  services.clipmenu = {
+      enable = true;
+      launcher = "rofi";
   };
 
   programs.waybar = {

@@ -2,20 +2,11 @@
 (menu-bar-mode -1)
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
-(rainbow-mode)
-(savehist-mode)
 
-;; file and backup history
-(setq
- backup-by-copying t
- backup-directory-alist
- '(("." . ".backups"))
- delete-old-versions t
- kept-new-versions 6
- kept-old-versions 2
- version-control t)
+;; text editing / navigation
 
-;;keyboard layout
+;; meow setup
+(require 'meow)
 (defun meow-setup ()
   (setq meow-cheatsheet-layout meow-cheatsheet-layout-qwerty)
   (meow-motion-overwrite-define-key
@@ -102,70 +93,30 @@
    '("'" . repeat)
    '("<escape>" . ignore)))
 
-;; remove clutter
-(menu-bar-mode -1)
-(tool-bar-mode -1)
-(scroll-bar-mode -1)
-(rainbow-mode)
-
-;;keybindings
-(require 'meow)
 (meow-setup)
 (meow-global-mode 1)
-(add-hook 'prog-mode-hook #'smartparens-mode)
 
-;; ui enhancments
-(add-hook 'prog-mode-hook #'display-line-numbers-mode)
-(doom-modeline-mode 1)
-(selectrum-mode)
-(setq completion-styles '(orderless))
-;; Optional performance optimization
-;; by highlighting only the visible candidates.
-(setq orderless-skip-highlighting (lambda () selectrum-is-active))
-(setq selectrum-highlight-candidates-function #'orderless-highlight-matches)
+(global-origami-mode)
 
-;; dashboard settings
+;; ui stuff
+(spaceline-all-the-icons-theme)
+(vertico-mode)
+(global-corfu-mode)
+(setq completion-styles '(orderless basic)
+      completion-category-overrides '((file (styles basic partial-completion))))
 (dashboard-setup-startup-hook)
-(setq dashboard-set-heading-icons t)
-(setq dashboard-set-file-icons t)
-(setq dashboard-set-navigator t)
-(setq dashboard-items '((recents . 5)
-			(projects . 5)))
-(setq dashboard-set-footer nil)
 
-(dirvish-override-dired-mode)
-(global-flycheck-mode)
-;;tabs
-(centaur-tabs-mode t)
-(setq centaur-tabs-style "bar")
-(setq centaur-tabs-set-icons t)
-
-;; note taking stuff
-(latex-preview-pane-enable)
-
-;; project managment
-(projectile-mode)
-
-;; programming stuff
-(require 'idris2-mode)
-(idris2-mode)
+;; font stuff
+(all-the-icons-completion-mode)
+(add-hook 'dired-mode-hook #'all-the-icons-dired-mode)
+(add-hook 'ibuffer-mode-hook #'all-the-icons-ibuffer-mode)
+;;
+;;;; programming language stuff
+(add-hook 'prog-mode-hook #'lsp)
 (nix-mode)
-(rust-mode)
 (haskell-mode)
+(rust-mode)
+;;
+;;;; proof assistent stuff
 (load-file (let ((coding-system-for-read 'utf-8)) (shell-command-to-string "agda-mode locate")))
-;; lsp language hooks
-(add-hook 'rust-mode-hook 'lsp)
-(add-hook 'haskell-mode-hook 'lsp)
-(add-hook 'java-mode-hook 'lsp)
 (add-hook 'coq-mode-hook #'company-coq-mode)
-
-;; dap configuration
-(dap-mode)
-(dap-ui-mode)
-(dap-tooltip-mode)
-(tooltip-mode)
-(dap-ui-controls-mode)
-
-;; prittify text
-(setq company-coq-features/prettify-symbols-in-terminals t)
-(set-fontset-font t 'unicode (font-spec :name "XITS Math") nil 'prepend)

@@ -7,11 +7,14 @@
   #        sha256 = "I8vEvC2R68ToXDLD/ZYK93NXpxeWw84btX7Spfajuec=";
   #    };
       wallpaper = config.lib.stylix.mkAnimation {
-          animation = ../../resources/gif/lofi-cafe.gif;
+          animation = ../../resources/gif/biker-with-girl.gif;
           polarity = "dark";
+          override = {
+ #             base00 = "ffffff";
+          };
       };
       #image = ../../resources/static/log-horizon.jpg;
-      #base16Scheme = {
+      #override = {
       #    base00 = "ffffff";
       #    base01 = "ffffff";
       #    base02 = "ffffff";
@@ -31,16 +34,16 @@
       #};
       fonts = {
           serif = {
-              package = pkgs.nerdfonts;
-              name = "FiraCode Nerd Font";
+              package = pkgs.julia-mono;
+              name = "JuliaMono";
           };
           sansSerif = {
-              package = pkgs.nerdfonts;
-              name = "FiraCode Nerd Font";
+              package = pkgs.julia-mono;
+              name = "JuliaMono";
           };
           monospace = {
-              package = pkgs.nerdfonts;
-              name = "FiraCode Nerd Font";
+              package = pkgs.julia-mono;
+              name = "JuliaMono";
           };
           sizes = {
               desktop = 12;

@@ -83,6 +83,17 @@
 
   programs.helix = {
     enable = true;
+    languages = {
+        language = [
+            {
+                name = "markdown";
+                language-server = { command = "ltex-ls"; };
+                file-types = ["md"];
+                scope = "source.markdown";
+                roots = [];
+            }
+        ];
+    };
     settings = {
       editor = {
         bufferline = "multiple";

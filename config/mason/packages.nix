@@ -17,30 +17,31 @@ in
     ];
 
     home.packages = with pkgs; [
+        zeal
         bemenu grim ffmpeg
         onagre
         #games
         minecraft lutris gamescope xivlauncher
-        steam onscripter-en gtkcord4 osu-lazer
-        blesh airshipper (dwarf-fortress-packages.dwarf-fortress-full.override {
+        steam onscripter-en osu-lazer
+        airshipper (dwarf-fortress-packages.dwarf-fortress-full.override {
             enableFPS = true;
             enableIntro = true;
-        }) citra desmume dolphin-emu pcsx2 pcsxr ppsspp rpcs3
+        })
+        # emulation
+        citra desmume dolphin-emu pcsx2 pcsxr ppsspp rpcs3
         rofi-mpd rofi-bluetooth rofi-power-menu rofi-systemd wtype
         #media
-        youtube-tui yt-dlp ani-cli headlines
-        swaylock kid3 mpdevil soundux discord streamlink-twitch-gui-bin
+        youtube-tui yt-dlp ani-cli
+        swaylock kid3 mpdevil discord streamlink-twitch-gui-bin
         xfce.thunar imv evince pavucontrol 
-        blueberry zathura gimp neochat libreoffice
+        blueberry zathura gimp neochat tootle libreoffice
         openscad cura 
-        xdg-utils mpvpaper 
+        xdg-utils  
         #shell stuff
         thefuck tldr tremc
-        cachix aria2 chatgpt-cli
-
+        aria2 chatgpt-cli
         # text stuff
-        texlive.combined.scheme-medium texlab
-        emacs-all-the-icons-fonts xits-math nerdfonts
+        texlive.combined.scheme-medium texlab ltex-ls emacs-all-the-icons-fonts
         ##ltex-ls pandoc
         #config format stuff
         nil nixfmt taplo yaml-language-server marksman multimarkdown ispell
@@ -64,6 +65,5 @@ in
         libsForQt5.kpeoplevcard
         libsForQt5.kcontacts
         libsForQt5.kpeople
-        chroma moar
     ];
 }

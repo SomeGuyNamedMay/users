@@ -9,13 +9,14 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nur.url = "github:nix-community/NUR";
-    stylix.url = "/home/mason/Projects/stylix";
+    stylix.url = "github:SomeGuyNamedMy/stylix/wallpaper-refactor"; # "/home/mason/Projects/stylix";
+    emacs-overlay.url = "github:nix-community/emacs-overlay";
   };
 
-  outputs = { nixpkgs, home-manager, nur, stylix, ... }:
+  outputs = { nixpkgs, home-manager, nur, stylix, emacs-overlay, ... }:
     let
       system = "x86_64-linux";
-      pkgs = nixpkgs.legacyPackages.${system};
+      pkgs = import nixpkgs { inherit system; overlays = [ emacs-overlay.overlays.default ]; };
     in {
       homeConfigurations."mason" = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
@@ -30,6 +31,16 @@
                 home.homeDirectory = "/home/mason";
                 home.stateVersion = "22.11";
                 programs.home-manager.enable = true;
+                nix.package = pkgs.nixFlakes;
+                nix.settings = {
+                    substituters = [
+                        "https://cache.nixos.org/"
+                        "https://nix-community.cachix.org"
+                    ];
+                    trusted-public-keys = [
+                        "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+                    ];
+                };
             }
             (import ./config/mason)
         ];

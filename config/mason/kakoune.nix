@@ -22,17 +22,6 @@ let
       };
       meta.homepage = "https://github.com/Guest0x0/coqoune";
   };
-  kakoune-wezterm = pkgs.kakouneUtils.buildKakounePluginFrom2Nix {
-      pname = "wezterm.kak";
-      version = "0.0.0";
-      src = pkgs.fetchFromGitHub {
-          owner = "vbauerster";
-          repo = "wezterm.kak";
-          rev = "d0d2a8a989f20cb614b7cf287770d7737611db2c";
-          sha256 = "nIAC4GRCO9P7+DiCGEKIJCCQ5+cgn5N4naCQC2+/djw=";
-      };
-      meta.homepage = "https://github.com/vbauerster/wezterm.kak";
-  };
 in
 {
     programs.kakoune = {
@@ -48,8 +37,20 @@ in
                 {
                     name = "WinSetOption";
                     group = "global";
-                    option = "filetype=(latex|haskell)";
+                    option = "filetype=(latex|haskell|idris|coq)";
                     commands = "map window insert <a-l> λ";
+                }
+                {
+                    name = "WinSetOption";
+                    group = "global";
+                    option = "filetype=(latex|haskell|idris|coq)";
+                    commands = "map window insert <a-f> ∀";
+                }
+                {
+                    name = "WinSetOption";
+                    group = "global";
+                    option = "filetype=(latex|haskell|idris|coq)";
+                    commands = "map window insert <a-e> ∃";
                 }
             ];
             numberLines.enable = true;
@@ -72,12 +73,10 @@ in
             openscad-kak
             kakoune-rainbow
             rep
-            kakoune-wezterm
         ];
         extraConfig = ''
         eval %sh{kak-lsp --config ${./kak-lsp.toml} --kakoune -s $kak_session}
         powerline-start
-        wezterm-integration-enable
         '';
     };
 }
