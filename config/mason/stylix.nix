@@ -2,48 +2,22 @@
 
 {
   stylix = {
-  #    image = pkgs.fetchurl {
-  #        url = "https://dl.dropboxusercontent.com/s/26outp2w90fw4bl/ffxiv-wallpaper.jpg?dl=0";
-  #        sha256 = "I8vEvC2R68ToXDLD/ZYK93NXpxeWw84btX7Spfajuec=";
-  #    };
-      wallpaper = config.lib.stylix.mkAnimation {
-          animation = ../../resources/gif/biker-with-girl.gif;
-          polarity = "dark";
-          override = {
- #             base00 = "ffffff";
-          };
-      };
-      #image = ../../resources/static/log-horizon.jpg;
-      #override = {
-      #    base00 = "ffffff";
-      #    base01 = "ffffff";
-      #    base02 = "ffffff";
-      #    base03 = "ffffff";
-      #    base04 = "ffffff";
-      #    base05 = "ffffff";
-      #    base06 = "ffffff";
-      #    base07 = "ffffff";
-      #    base08 = "ffffff";
-      #    base09 = "ffffff";
-      #    base0A = "ffffff";
-      #    base0B = "ffffff";
-      #    base0C = "ffffff";
-      #    base0D = "ffffff";
-      #    base0E = "ffffff";
-      #    base0F = "ffffff";
-      #};
+    wallpaper = config.lib.stylix.mkAnimation {
+      animation = ../../resources/gif/lofi-cafe.gif;    
+      polarity = "dark";
+    };
       fonts = {
           serif = {
-              package = pkgs.julia-mono;
-              name = "JuliaMono";
+              package = pkgs.nerdfonts;
+              name = "FiraCode Nerd Font Mono";
           };
           sansSerif = {
-              package = pkgs.julia-mono;
-              name = "JuliaMono";
+              package = pkgs.nerdfonts;
+              name = "FiraCode Nerd Font Mono";
           };
           monospace = {
-              package = pkgs.julia-mono;
-              name = "JuliaMono";
+              package = pkgs.nerdfonts;
+              name = "FiraCode Nerd Font Mono";
           };
           sizes = {
               desktop = 12;

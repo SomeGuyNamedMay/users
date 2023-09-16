@@ -22,9 +22,6 @@
 
   qt = {
     enable = true;
-    platformTheme = "gnome";
-    style.package = pkgs.adwaita-qt;
-    style.name = "adwaita";
   };
 
   dconf.settings = {
@@ -32,28 +29,126 @@
   };
 
   services.gammastep = {
-      enable = true;
-      provider = "geoclue2";
-      tray = true;
-      dawnTime = "6:00-7:45";
-      duskTime = "18:35-20:15";
+    enable = true;
+    provider = "geoclue2";
+    tray = true;
+    dawnTime = "6:00-7:45";
+    duskTime = "18:35-20:15";
+  };
+
+  wayland.windowManager.hyprland = {
+    enable = true;
+    settings = {
+      general = {
+          sensitivity = 1.0;
+          gaps_in = 5;
+          gaps_out = 5;
+          border_size = 3;
+          apply_sens_to_raw = 0;
+          resize_on_border = true;
+      };
+      decoration = {
+          rounding = 8;
+          drop_shadow = true;
+          shadow_range = 4;
+          shadow_render_power = 3;
+      };
+      animations = {
+          enabled = true;
+          animation = [
+            "windowsIn,1,6,default,slide"
+            "windowsOut,1,6,default,slide"
+            "windowsMove,1,6,default,slide"
+            "workspaces,1,6,pop,fade"
+          ];
+          bezier = "pop,0.91,0.25,0.06,0.9";
+      };
+      blurls = [
+          "gtk-layer-shell"
+          "ironbar"
+          "rofi"
+          "notifications"
+          "wlogout"
+      ];
+      bind = [
+        "SUPER,Q,killactive,"
+        "SUPER,F,fullscreen,"
+        "SUPER,M,exit,"
+        "SUPER,V,togglefloating,"
+        "SUPER,H,movefocus,l"
+        "SUPER,L,movefocus,r"
+        "SUPER,K,movefocus,u"
+        "SUPER,J,movefocus,d"
+        "SUPERALT,H,movewindow,l"
+        "SUPERALT,L,movewindow,r"
+        "SUPERALT,K,movewindow,u"
+        "SUPERALT,J,movewindow,d"
+
+        # move to workspace
+        "SUPER,1,workspace,1"
+        "SUPER,2,workspace,2"
+        "SUPER,3,workspace,3"
+        "SUPER,4,workspace,4"
+        "SUPER,5,workspace,5"
+        "SUPER,6,workspace,6"
+        "SUPER,7,workspace,7"
+        "SUPER,8,workspace,8"
+        "SUPER,9,workspace,9"
+        "SUPER,0,workspace,10"
+
+        # move window to workspace
+        "SUPERSHIFT,1,movetoworkspace,1"
+        "SUPERSHIFT,2,movetoworkspace,2"
+        "SUPERSHIFT,3,movetoworkspace,3"
+        "SUPERSHIFT,4,movetoworkspace,4"
+        "SUPERSHIFT,5,movetoworkspace,5"
+        "SUPERSHIFT,6,movetoworkspace,6"
+        "SUPERSHIFT,7,movetoworkspace,7"
+        "SUPERSHIFT,8,movetoworkspace,8"
+        "SUPERSHIFT,9,movetoworkspace,9"
+        "SUPERSHIFT,0,movetoworkspace,10"
+
+        # mouse keybindings
+        "SUPER,mouse_down,workspace,e+1"
+        "SUPER,mouse_up,workspace,e-1"
+
+        # misc
+        "SUPER,Return,exec,wezterm"
+        "SUPER,Space,exec,rofi -show"
+        ",XF86AudioRaiseVolume,exec,volumectl -u up"
+        ",XF86AudioLowerVolume,exec,volumectl -u down"
+        ",XF86AudioMute,exec,volumectl toggle-mute"
+        ",XF86AudioMicMute,exec,volumectl -m toggle-mute"
+        ",XF86MonBrightnessUp,exec,lightctl up"
+        ",XF86MonBrightnessDown,exec,lightctl down"
+        "SUPER,D,exec,swaync-client --toggle-panel"
+      ];
+      binde = [
+        "SUPERSHIFT,H,resizeactive, -10 0" 
+        "SUPERSHIFT,L,resizeactive, 10 0" 
+        "SUPERSHIFT,K,resizeactive, 0 -10" 
+        "SUPERSHIFT,J,resizeactive, 0 10" 
+      ];
+      monitor = ",highrr,auto,1";
+    };
   };
 
   wayland.windowManager.sway = {
-      enable = true;
-      package = pkgs.swayfx;
-      config = {
-          modifier = "Mod4";
-          menu = "${pkgs.rofi-wayland}/bin/rofi -show";
-          gaps = {
-              inner = 10;
-              outer = 10;
-          };
-          bars = [];
+    enable = true;
+    package = pkgs.swayfx;
+    systemd.enable = true;
+    config = {
+      modifier = "Mod4";
+      menu = "${pkgs.rofi-wayland}/bin/rofi -show";
+      gaps = {
+        inner = 10;
+        outer = 10;
       };
-      extraConfig = ''
-        include ${./swayfx-config}
-      '';
+      bars = [ ];
+    };
+    extraConfig = ''
+      include ${./swayfx-config}
+    '';
     wrapperFeatures.gtk = true;
     extraSessionCommands = ''
       export SDL_VIDEODRIVER=wayland
@@ -67,78 +162,26 @@
     '';
   };
 
-  services.clipmenu = {
-      enable = true;
-      launcher = "rofi";
-  };
-
   programs.waybar = {
-      enable = true;
-      systemd.enable = true;
-      settings = {
-          mainBar = {
-              layer = "top";
-              position = "top";
-              height = 30;
-              modules-left = [
-                  "user"
-                  "sway/workspaces"
-              ];
-              modules-center = [
-                  "sway/window"
-              ];
-              modules-right = [
-                  "upower"
-                  "clock"
-              ];
-              "sway/workspaces" = {
-                  persistent_workspaces = {
-                      "1" = [];
-                      "2" = [];
-                      "3" = [];
-                      "4" = [];
-                      "5" = [];
-                  };
-              };
-              "sway/window" = {
-                  icon = true;
-              };
-          };
-      };
+    enable = true;
+    systemd.enable = true;
   };
 
-  #services.swayidle = {
-  #    enable = true;
-  #    events = [
-  #        {
-  #            event = "before-sleep";
-  #            command = "${pkgs.swaylock}/bin/swaylock";
-  #        }
-  #        {
-  #            event = "lock";
-  #            command = "lock";
-  #        }
-  #    ];
-  #    timeouts = [
-  #        {
-  #            timeout = 600;
-  #            command = "${pkgs.swaylock}/bin/swaylock -fF";
-  #        }
-  #    ];
-  #    systemdTarget = "graphical-session.target";
-  #};
-
+  services.clipmenu = {
+    enable = true;
+    launcher = "rofi";
+  };
 
   programs.rofi = {
     enable = true;
     package = pkgs.rofi-wayland;
-    terminal = "${pkgs.foot}/bin/foot";
+    terminal = "${pkgs.wezterm}/bin/wezterm";
     plugins = with pkgs; [
-        rofi-top
-        rofi-emoji
-        rofi-calc
-        rofi-pulse-select
-        rofi-file-browser
+      rofi-top
+      rofi-emoji
+      rofi-calc
+      rofi-pulse-select
+      rofi-file-browser
     ];
     extraConfig = {
       modi = "drun,run";
@@ -156,12 +199,28 @@
 
 
   programs.foot.enable = true;
+  programs.wezterm = {
+    enable = true;
+    enableZshIntegration = true;
+    extraConfig = ''
+      return {
+          hide_tab_bar_if_only_one_tab = true
+      }
+    '';
+  };
 
   services.mako = { enable = true; };
   services.udiskie.enable = true;
   services.poweralertd.enable = true;
 
   xdg.enable = true;
+  xdg.userDirs = {
+    enable = true;
+    createDirectories = true;
+    extraConfig = {
+      XDG_PROJECT_DIR = "${config.home.homeDirectory}/Projects";
+    };
+  };
   xdg.desktopEntries = {
     imv = {
       name = "Imv";
@@ -175,16 +234,16 @@
   xdg.mimeApps = {
     enable = true;
     associations.added = {
-        "x-scheme-handler/http" = "qutebrowser.desktop";
-        "x-scheme-handler/https" = "qutebrowser.desktop";
-        "x-scheme-handler/chrome" = "qutebrowser.desktop";
-        "text/html" = "qutebrowser.desktop";
-        "application/x-extension-htm" = "qutebrowser.desktop";
-        "application/x-extension-html" = "qutebrowser.desktop";
-        "application/x-extension-shtml" = "qutebrowser.desktop";
-        "application/xhtml+xml" = "qutebrowser.desktop";
-        "application/x-extension-xhtml" = "qutebrowser.desktop";
-        "application/x-extension-xht" = "qutebrowser.desktop";
+      "x-scheme-handler/http" = "qutebrowser.desktop";
+      "x-scheme-handler/https" = "qutebrowser.desktop";
+      "x-scheme-handler/chrome" = "qutebrowser.desktop";
+      "text/html" = "qutebrowser.desktop";
+      "application/x-extension-htm" = "qutebrowser.desktop";
+      "application/x-extension-html" = "qutebrowser.desktop";
+      "application/x-extension-shtml" = "qutebrowser.desktop";
+      "application/xhtml+xml" = "qutebrowser.desktop";
+      "application/x-extension-xhtml" = "qutebrowser.desktop";
+      "application/x-extension-xht" = "qutebrowser.desktop";
     };
     defaultApplications = {
       "image/png" = [ "imv.desktop" ];
@@ -198,24 +257,24 @@
       "x-scheme-handler/chrome" = [ "qutebrowser.desktop" ];
       "text/html" = [ "qutebrowser.desktop" ];
       "application/x-extension-htm" = [ "qutebrowser.desktop" ];
-      "application/x-extension-html" = ["qutebrowser.desktop"];
-      "application/x-extension-shtml" = ["qutebrowser.desktop"];
-      "application/xhtml+xml" = ["qutebrowser.desktop"];
-      "application/x-extension-xhtml" = ["qutebrowser.desktop"];
-      "application/x-extension-xht" = ["qutebrowser.desktop"];
+      "application/x-extension-html" = [ "qutebrowser.desktop" ];
+      "application/x-extension-shtml" = [ "qutebrowser.desktop" ];
+      "application/xhtml+xml" = [ "qutebrowser.desktop" ];
+      "application/x-extension-xhtml" = [ "qutebrowser.desktop" ];
+      "application/x-extension-xht" = [ "qutebrowser.desktop" ];
     };
   };
 
   services.kdeconnect = {
-      enable = true;
-      indicator = true;
+    enable = true;
+    indicator = true;
   };
   services.flameshot = {
-      enable = true;
-      settings = {
-          General = {
-              showStartupLaunchMessage = false;
-          };
+    enable = true;
+    settings = {
+      General = {
+        showStartupLaunchMessage = false;
       };
+    };
   };
 }

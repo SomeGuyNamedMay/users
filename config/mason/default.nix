@@ -2,7 +2,7 @@
 {
     imports = [
         ./desktop.nix
-        ./kakoune.nix
+#        ./kakoune.nix
         ./media.nix
         ./packages.nix
         ./programming-env.nix

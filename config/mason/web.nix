@@ -2,7 +2,6 @@
 {
   programs.qutebrowser = {
       enable = true;
-      package = pkgs.qutebrowser-qt6;
       settings = {
           scrolling.smooth = true;
           qt.highdpi = true;

@@ -1,16 +1,68 @@
 { pkgs, lib, config, ... }:
-
 {
   home.sessionVariables = {
     TERMINAL = "foot";
     GTK_CSD = "0";
   };
 
+  programs.bat = {
+      enable = true;
+  };
+
+  programs.fzf = {
+      enable = true;
+      enableZshIntegration = true;
+  };
+
+  programs.tmux = {
+      enable = true;
+  };
+
+  programs.gh = {
+    enable = true;
+    gitCredentialHelper.enable = true;
+  };
+  programs.git = {
+    enable = true;
+    userName = "SomeGuyNamedMy";
+    userEmail = "mfdear444@gmail.com";
+  };
+
+  programs.direnv = {
+    enable = true;
+    enableZshIntegration = true;
+  };
+
+  programs.eza = {
+    enable = true;
+    enableAliases = true;
+    git = true;
+    icons = true;
+  };
+
+  programs.starship = {
+    enable = true;
+    enableZshIntegration = true;
+    settings = fromTOML (builtins.readFile ./starship.toml);
+  };
+
+  programs.carapace = {
+    enable = true;
+    enableZshIntegration = true;  
+    enableNushellIntegration = true;
+  };
+
+  programs.nushell = {
+    enable = true;
+  };
+
   programs.zsh = {
     enable = true;
     enableAutosuggestions = true;
     enableCompletion = true;
-    enableSyntaxHighlighting = true;
+    syntaxHighlighting = {
+        enable = true;
+    };
     autocd = true;
     defaultKeymap = "viins";
     dotDir = ".config/zsh";
@@ -61,75 +113,5 @@
             };
         }
     ];
-  };
-
-  programs.nushell = {
-    enable = true;
-    extraConfig = ''
-      source ${pkgs.nu_scripts}/share/nu_scripts/custom-completions/nix/nix-completions.nu
-      source ${pkgs.nu_scripts}/share/nu_scripts/custom-completions/git/git-completions.nu
-      source ${pkgs.nu_scripts}/share/nu_scripts/custom-completions/ani-cli/ani-cli-completions.nu
-      source ${pkgs.nu_scripts}/share/nu_scripts/custom-completions/cargo/cargo-completions.nu
-    '';
-  };
-
-  programs.bat = {
-      enable = true;
-  };
-
-  programs.tmux = {
-      enable = true;
-  };
-
-  programs.helix = {
-    enable = true;
-    languages = {
-        language = [
-            {
-                name = "markdown";
-                language-server = { command = "ltex-ls"; };
-                file-types = ["md"];
-                scope = "source.markdown";
-                roots = [];
-            }
-        ];
-    };
-    settings = {
-      editor = {
-        bufferline = "multiple";
-        cursorline = true;
-        auto-format = true;
-        color-modes = true;
-        indent-guides.render = true;
-      };
-    };
-  };
-
-  programs.gh = {
-    enable = true;
-    enableGitCredentialHelper = true;
-  };
-  programs.git = {
-    enable = true;
-    userName = "SomeGuyNamedMy";
-    userEmail = "mfdear444@gmail.com";
-  };
-
-  programs.direnv = {
-    enable = true;
-    enableZshIntegration = true;
-    #enableNushellIntegration = true;
-  };
-
-  programs.lsd = {
-    enable = true;
-    enableAliases = true;
-  };
-
-  programs.starship = {
-    enable = true;
-    enableZshIntegration = true;
-    enableNushellIntegration = true;
-    settings = fromTOML (builtins.readFile ./starship.toml);
   };
 }

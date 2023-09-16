@@ -9,14 +9,13 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nur.url = "github:nix-community/NUR";
-    stylix.url = "github:SomeGuyNamedMy/stylix/wallpaper-refactor"; # "/home/mason/Projects/stylix";
-    emacs-overlay.url = "github:nix-community/emacs-overlay";
+    stylix.url = "git+file:/home/mason/Projects/stylix?branch=wallpaper-refactor";
   };
 
-  outputs = { nixpkgs, home-manager, nur, stylix, emacs-overlay, ... }:
+  outputs = { nixpkgs, home-manager, nur, stylix, ... }:
     let
       system = "x86_64-linux";
-      pkgs = import nixpkgs { inherit system; overlays = [ emacs-overlay.overlays.default ]; };
+      pkgs = import nixpkgs { inherit system; overlays = []; };
     in {
       homeConfigurations."mason" = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
