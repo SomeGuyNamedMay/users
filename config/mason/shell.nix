@@ -46,12 +46,6 @@
     settings = fromTOML (builtins.readFile ./starship.toml);
   };
 
-  programs.carapace = {
-    enable = true;
-    enableZshIntegration = true;  
-    enableNushellIntegration = true;
-  };
-
   programs.nushell = {
     enable = true;
   };

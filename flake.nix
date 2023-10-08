@@ -9,7 +9,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nur.url = "github:nix-community/NUR";
-    stylix.url = "git+file:/home/mason/Projects/stylix?branch=wallpaper-refactor";
+    stylix.url = "git+file:/home/mason/Documents/GitHub/stylix?branch=wallpaper-refactor";
   };
 
   outputs = { nixpkgs, home-manager, nur, stylix, ... }:

@@ -198,7 +198,16 @@
   services.avizo = { enable = true; };
 
 
-  programs.foot.enable = true;
+  programs.rio = {
+    enable = true;
+    settings = {
+      performance = "High";
+      navigation = {
+        mode = "CollapsedTab";
+        clickable = true;
+      };
+    };
+  };
   programs.wezterm = {
     enable = true;
     enableZshIntegration = true;
