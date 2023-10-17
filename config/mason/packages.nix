@@ -12,14 +12,17 @@ in
         "discord"
         "vscode"
         "aseprite"
+        "osu-lazer-bin"
     ];
 
-    home.packages = with pkgs; [       zeal
+    home.packages = with pkgs; [       
+        zeal
         #games 
-        steam
+        steam osu-lazer-bin
         rofi-mpd rofi-bluetooth rofi-power-menu rofi-systemd wtype
         #media
-        youtube-tui yt-dlp ani-cli
+        ytfzf ueberzugpp yt-dlp ani-cli crunchy-cli
+        ffmpeg
         swaylock kid3 mpdevil discord streamlink-twitch-gui-bin
         xfce.thunar imv evince pavucontrol 
         blueberry zathura gimp neochat tootle libreoffice
@@ -42,7 +45,6 @@ in
         ghc cabal-install stack haskell-language-server
         zig zls ldc dub
         # half compiled monstrocities
-        gnumake
         openjdk19 maven
         #dotnet-sdk omnisharp-roslyn netcoredbg
         # scripting languages
@@ -52,10 +54,7 @@ in
         lua stylua lua-language-server
         (python3.withPackages pythonPackages)
         # proof assistent stuff
-        coq agda idris2
-        libsForQt5.kpeoplevcard
-        libsForQt5.kcontacts
-        libsForQt5.kpeople
+        coq agda idris2 lean4
         rio
     ];
 }

@@ -15,7 +15,7 @@
   outputs = { nixpkgs, home-manager, nur, stylix, ... }:
     let
       system = "x86_64-linux";
-      pkgs = import nixpkgs { inherit system; overlays = []; };
+      pkgs = import nixpkgs { inherit system; overlays = [ ]; };
     in {
       homeConfigurations."mason" = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
